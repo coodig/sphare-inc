@@ -196,6 +196,26 @@ export default function HomePage() {
           />
         ))}
       </div>
+
+      {/* SECTION: Docs */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+        <h2 className="text-2xl sm:text-3xl font-bold">Our Docs</h2>
+        <Link href="/view-all?type=tools">
+        <button className="border border-white px-4 py-1 rounded-md text-sm hover:bg-white hover:text-black transition cursor-pointer">
+          View All
+        </button>
+        </Link>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 mb-10">
+        {dummyProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            name={product.name}
+            description={product.description}
+            logo={product.logo}
+          />
+        ))}
+      </div>
     </section>
   )
 }

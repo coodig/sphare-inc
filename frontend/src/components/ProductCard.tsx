@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 interface ProductCardProps {
   name: string;
   description?: string;
@@ -11,8 +13,12 @@ export default function ProductCard({
   logo,
   url,
 }: ProductCardProps) {
+
+  const slug = name.toLowerCase().replace(/\s+/g,'');
+
   return (
-    <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200 w-full">
+     <Link href={`/details/${slug}`} passHref>
+    <div className="bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl p-5 shadow-sm hover:shadow-md transition-all duration-200 w-full h-full">
       {logo && (
         <div className="w-full flex justify-center mb-4">
           <img
@@ -26,19 +32,20 @@ export default function ProductCard({
       <h3 className="text-lg sm:text-xl font-semibold mb-1">{name}</h3>
 
       {description && (
-        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3">
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-3 overflow-hidden">
           {description}
         </p>
       )}
 
       <a
         href={url || "https://www.github.com/coodig"}
-        target="_blank"
+        // target="_blank"
         rel="noopener noreferrer"
         className="inline-block text-sm sm:text-base text-blue-600 dark:text-blue-400 hover:underline"
       >
         Visit Site →
       </a>
     </div>
+    </Link>
   );
 }
